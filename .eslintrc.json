@@ -1,0 +1,27 @@
+{
+  "env": {
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:vue/base",
+    "plugin:vue/vue3-essential",
+    "plugin:vue/vue3-strongly-recommended",
+    "prettier"
+  ],
+  "root": true,
+  "rules": {
+    "vue/html-self-closing": [
+      "warn",
+      {
+        "html": {
+          "component": "always",
+          "normal": "always",
+          "void": "always"
+        }
+      }
+    ],
+    "vue/max-attributes-per-line": "off",
+    "vue/singleline-html-element-content-newline": "off"
+  }
+}
