@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HelloWorld from '../components/HelloWorld.vue'
-import { routes as citiesRoutes} from '../components/cities'
+import { routes as citiesRoutes } from '../components/cities'
 
 const routes = [
   {
