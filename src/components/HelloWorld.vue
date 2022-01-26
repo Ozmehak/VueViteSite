@@ -1,5 +1,6 @@
 <script>
-import { mapGetters } from 'vuex'
+  import { mapGetters } from 'vuex'
+
   export default {
     name: 'HelloWorld',
     props: {
@@ -10,7 +11,7 @@ import { mapGetters } from 'vuex'
     },
 
     computed: {
-      ...mapGetters(['message']),
+      ...mapGetters(['message'])
     }
   }
 </script>
@@ -25,5 +26,4 @@ import { mapGetters } from 'vuex'
   <img alt="" src="/assets/fox.jpeg" />
   <p>{{ msg }}</p>
   <p>{{ message }}</p>
-
 </template>

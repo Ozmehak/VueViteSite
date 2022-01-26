@@ -5,7 +5,7 @@ import wretch from 'wretch'
 const state = {
   message: 'STORE TEXT',
   cities: null,
-  loadingCities: false,
+  loadingCities: false
 }
 
 // Mutations modify the data in the state
@@ -18,7 +18,7 @@ const mutations = {
   },
   setLoadingCities(state, loading) {
     state.loadingCities = loading
-  },
+  }
 }
 
 // Getters let us fetch data from the state
@@ -43,7 +43,7 @@ const actions = {
         store.commit('setCities', cities)
         store.commit('setLoadingCities', false)
       })
-  },
+  }
 }
 
 export default createStore({ mutations, state, getters, actions, strict: true })

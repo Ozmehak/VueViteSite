@@ -2,6 +2,7 @@
   <div>
     {{ message }} <input type="text" v-model="inputText" />
     <button @click="changeText()">Change</button>
+    <button @click="resetText()">Reset</button>
     <br />
     {{ largeMessage }}
   </div>
@@ -25,7 +26,11 @@
 
     methods: {
       changeText() {
-        this.$store.commit('setMessage', this.inputText)
+       /* this.$store.commit('setMessage', this.inputText)*/
+        this.message = this.inputText
+      },
+      resetText() {
+        this.inputText = ""
       }
     },
 

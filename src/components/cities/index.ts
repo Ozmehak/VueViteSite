@@ -11,5 +11,5 @@ export const routes = [
     name: 'CitiesDetails',
     path: '/cities/:id',
     component: CitiesDetails
-  },
+  }
 ]

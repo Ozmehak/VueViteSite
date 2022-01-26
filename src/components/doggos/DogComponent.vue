@@ -2,9 +2,12 @@
   <div v-if="dog /*&& !error*/">
     <img width="640" height="480" :src="dog.message" :alt="dog.message" />
     <p>{{ value }}</p>
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
   </div>
   <div v-if="error">
-    <p>{{ error }}</p>
+    <AlertComponent :message="error" type="error" />
   </div>
   <div>
     <h3>Need excuses to meet doggos?</h3>
@@ -14,16 +17,18 @@
       @click="this.generateExcuses()"
     />
     <ol>
-      <li v-for="excuse in excuses">{{ excuse.excuse }}</li>
+      <li v-for="excuse in excuses" :key="excuse.id">{{ excuse.excuse }}</li>
     </ol>
   </div>
 </template>
 
 <script>
   import wretch from 'wretch'
+  import AlertComponent from '../AlertComponent.vue'
 
   export default {
     name: 'DogComponent',
+    components: { AlertComponent },
     data() {
       return {
         dog: null,
@@ -70,7 +75,9 @@
             //annars hämta value från russland och lägg till i LS
           } else {
             //russland
-            return wretch('https://api.isevenapi.xyz/api/iseven/6/')
+            return wretch(
+              'http://www.randomnumberapi.com/api/v1.0/randomnumber'
+            )
               .get()
               .json()
               .then((russiaResponse) => {

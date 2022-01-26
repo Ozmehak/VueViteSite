@@ -1,5 +1,5 @@
 <script>
-import { mapActions, mapGetters } from "vuex";
+  import { mapActions, mapGetters } from 'vuex'
 
   export default {
     data() {
@@ -8,7 +8,7 @@ import { mapActions, mapGetters } from "vuex";
       }
     },
     computed: {
-      ...mapGetters(['cities', 'message', 'loadingCities']),
+      ...mapGetters(['cities', 'message', 'loadingCities'])
     },
     methods: {
       ...mapActions(['getCities'])
