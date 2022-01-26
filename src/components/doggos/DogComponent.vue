@@ -1,10 +1,21 @@
 <template>
-  <div v-if="dog && !error">
-    <img :src="dog.message" :alt="dog.message" />
+  <div v-if="dog /*&& !error*/">
+    <img width="640" height="480" :src="dog.message" :alt="dog.message" />
     <p>{{ value }}</p>
   </div>
   <div v-if="error">
     <p>{{ error }}</p>
+  </div>
+  <div>
+    <h3>Need excuses to meet doggos?</h3>
+    <input
+      value="Gief Excuses Plz"
+      type="button"
+      @click="this.generateExcuses()"
+    />
+    <ol>
+      <li v-for="excuse in excuses">{{ excuse.excuse }}</li>
+    </ol>
   </div>
 </template>
 
@@ -12,15 +23,25 @@
   import wretch from 'wretch'
 
   export default {
-    name: 'DuckComponent',
+    name: 'DoggoComponent',
     data() {
       return {
         dog: null,
         value: null,
-        error: null
+        error: null,
+        excuses: null
       }
     },
     methods: {
+      generateExcuses() {
+        wretch('https://excuser.herokuapp.com/v1/excuse/10')
+          .get()
+          .json()
+          .then((excuses) => {
+            this.excuses = excuses
+          })
+      },
+
       getFileNameFromUrl(url) {
         //url split
         let splitted = url.split('/')
@@ -49,7 +70,7 @@
             //annars hämta value från russland och lägg till i LS
           } else {
             //russland
-            return wretch('https://kjdflkdfjldksfjsldfkjsdlk.se')
+            return wretch('https://api.isevenapi.xyz/api/iseven/6/')
               .get()
               .json()
               .then((russiaResponse) => {
