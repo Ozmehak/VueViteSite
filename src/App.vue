@@ -22,5 +22,5 @@
   <router-link to="/cities">Cities</router-link>
   <button @click="goTo('Home')">Home</button>
   <button @click="goTo('Cities')">Cities</button>
-  <button @click="goTo('Ducks')">Duckplz</button>
+  <button @click="goTo('Doggos')">Doggoplz</button>
 </template>

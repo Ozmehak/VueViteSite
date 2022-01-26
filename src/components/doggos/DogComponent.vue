@@ -23,7 +23,7 @@
   import wretch from 'wretch'
 
   export default {
-    name: 'DoggoComponent',
+    name: 'DogComponent',
     data() {
       return {
         dog: null,
