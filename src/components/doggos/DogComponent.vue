@@ -1,40 +1,45 @@
 <template>
-  <div v-if="dog /*&& !error*/">
+  <div v-if="loading" class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  <CardSlot v-else-if="dog /*&& !error*/" class="doggo">
     <img width="640" height="480" :src="dog.message" :alt="dog.message" />
     <p>{{ value }}</p>
-    <div class="spinner-border text-primary" role="status">
-      <span class="visually-hidden">Loading...</span>
-    </div>
-  </div>
+  </CardSlot>
   <div v-if="error">
-    <AlertComponent :message="error" type="error" />
+    <AlertComponent :message="error.message" type="error" />
   </div>
-  <div>
+  <CardSlot class="excuses">
     <h3>Need excuses to meet doggos?</h3>
     <input
       value="Gief Excuses Plz"
       type="button"
+      class="btn btn-light"
       @click="this.generateExcuses()"
     />
     <ol>
       <li v-for="excuse in excuses" :key="excuse.id">{{ excuse.excuse }}</li>
     </ol>
-  </div>
+  </CardSlot>
+  <EventDemo :total-time="10" @done="handleDoneEvent" ref="timerComp" />
 </template>
 
 <script>
   import wretch from 'wretch'
   import AlertComponent from '../AlertComponent.vue'
+  import CardSlot from '../CardSlot.vue'
+  import EventDemo from '../EventDemo.vue'
 
   export default {
     name: 'DogComponent',
-    components: { AlertComponent },
+    components: { EventDemo, CardSlot, AlertComponent },
     data() {
       return {
         dog: null,
         value: null,
         error: null,
-        excuses: null
+        excuses: null,
+        loading: true
       }
     },
     methods: {
@@ -45,6 +50,11 @@
           .then((excuses) => {
             this.excuses = excuses
           })
+      },
+
+      handleDoneEvent(data) {
+        console.log('done', data)
+        // this.$refs.timerComp.reset()
       },
 
       getFileNameFromUrl(url) {
@@ -93,8 +103,14 @@
         .catch((err) => {
           this.error = err
         })
+        .finally(() => {
+          this.loading = false
+        })
     }
   }
 </script>
 
-<style scoped></style>
+<style scoped lang="sass">
+  .doggo, .excuses
+    display: inline-block
+</style>
