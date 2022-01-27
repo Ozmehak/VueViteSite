@@ -1,8 +1,8 @@
 <template>
   <div>
     {{ message }} <input type="text" v-model="inputText" />
-    <button @click="changeText()">Change</button>
-    <button @click="resetText()">Reset</button>
+    <button class="btn btn-primary" @click="changeText()">Change</button>
+    <button class="btn btn-danger" @click="resetText()">Reset</button>
     <br />
     {{ largeMessage }}
   </div>

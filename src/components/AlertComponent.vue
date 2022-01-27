@@ -1,9 +1,13 @@
 <template>
   <div class="AlertComponent" :class="`AlertComponent--${type}`">
-    <AlertCircleOutline v-if="type === 'error'" class="AlertComponent__icon" />
-    <AlertOutline v-else-if="type === 'warning'" class="AlertComponent__icon" />
-    <InformationOutline v-else class="AlertComponent__icon" />
-    <span class="AlertComponent__message">{{ message }}</span>
+    <slot name="icon">
+      <AlertCircleOutline v-if="type === 'error'" class="AlertComponent__icon" />
+      <AlertOutline v-else-if="type === 'warning'" class="AlertComponent__icon" />
+      <InformationOutline v-else class="AlertComponent__icon" />
+    </slot>
+    <slot>
+      <span class="AlertComponent__message">{{ message }}</span>
+    </slot>
   </div>
 </template>
 

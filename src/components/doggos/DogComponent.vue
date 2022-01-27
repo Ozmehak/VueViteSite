@@ -49,6 +49,12 @@
           .json()
           .then((excuses) => {
             this.excuses = excuses
+            /*
+            Tilldelning: let a = 7
+            Jämförelse: a === 7
+            objekt: { a: 7 }
+            Indexering: a[7]
+            */
           })
       },
 
