@@ -8,7 +8,10 @@ export const routes = [
     component: MovieDb
   },
 
-  {name: 'MovieInfo',
-  path: '/movieinfo/:id',
-  component: MovieInfo}
+  {
+    name: 'MovieInfo',
+    path: '/movies/:id',
+    component: MovieInfo,
+    props: (route) => ({ id: route.params.id })
+  }
 ]

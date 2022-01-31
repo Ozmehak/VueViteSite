@@ -37,8 +37,10 @@ const actions = {
     if (store.state.movies || store.state.loadingMovies) return
     store.commit('setLoadingMovies', true)
 
+    const apiKey = import.meta.env.VITE_API_KEY
+
     return wretch(
-      `https://api.themoviedb.org/3/movie/top_rated?api_key=382a51f2c6fef6132227dddb86062db6&language=en-US&page=1`
+      `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=en-US&page=1`
     )
       .get()
       .json()

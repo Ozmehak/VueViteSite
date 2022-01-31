@@ -1,7 +1,8 @@
 <template>
-<div v-if="movies">
-<p>Title: {{movies.result.title}}</p>
-</div>
+  <div>
+    <p>Title: {{ movies.original_title }}</p>
+    <img />
+  </div>
 </template>
 <script>
   import wretch from 'wretch'
@@ -13,14 +14,24 @@
         movies: null
       }
     },
+    props: {
+      id: {
+        type: String,
+        required: true
+      }
+    },
     created() {
-      wretch(`https://api.themoviedb.org/3/movie/${this.$route.params.id}?api_key=${
-        import.meta.env.VITE_API_KEY
-      }&language=en-US&page=1`)
+      // @ts-ignore
+      const apiKey = import.meta.env.VITE_API_KEY
+
+      wretch(
+        `https://api.themoviedb.org/3/movie/${this.id}?api_key=${apiKey}&language=en-US&page=1`
+      )
         .get()
         .json()
         .then((movies) => {
           this.movies = movies
+          console.log('donkeh')
         })
     }
   }
