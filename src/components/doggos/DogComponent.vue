@@ -4,7 +4,7 @@
   </div>
   <CardSlot v-else-if="dog /*&& !error*/" class="doggo">
     <img width="640" height="480" :src="dog.message" :alt="dog.message" />
-    <p>{{ value }}</p>
+    <p>Denna Hoond Kosta {{ value }} Kronors</p>
   </CardSlot>
   <div v-if="error">
     <AlertComponent :message="error.message" type="error" />
@@ -92,14 +92,15 @@
           } else {
             //russland
             return wretch(
-              'http://www.randomnumberapi.com/api/v1.0/randomnumber'
+              'https://avancera.app/cities/'
             )
               .get()
               .json()
               .then((russiaResponse) => {
+                let donKeeh = Math.round(Math.random() *1000) * russiaResponse[0].population
                 let fileName = this.getFileNameFromUrl(this.dog.message)
-                window.localStorage.setItem(fileName, russiaResponse)
-                this.value = russiaResponse
+                window.localStorage.setItem(fileName, donKeeh)
+                this.value = donKeeh
               })
               .catch(() => {
                 throw new Error('fick inget svar från russland')

@@ -1,20 +1,23 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HelloWorld from '../components/HelloWorld.vue'
 import { routes as citiesRoutes } from '../components/cities'
-import Ducks from '../components/doggos/DogComponent.vue'
+import { routes as moviesRoutes } from '../components/moviedb'
+import Doggos from '../components/doggos/DogComponent.vue'
+
 
 const routes = [
   {
     name: 'Doggos',
     path: '/doggos',
-    component: Ducks
+    component: Doggos
   },
   {
     name: 'Home',
     path: '/',
     component: HelloWorld
   },
-  ...citiesRoutes
+  ...citiesRoutes,
+  ...moviesRoutes
 ]
 
 export default createRouter({

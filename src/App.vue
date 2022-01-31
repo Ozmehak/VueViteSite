@@ -21,6 +21,7 @@
   <router-link to="/">Hello</router-link>
   <router-link to="/cities">Cities</router-link>
   <button class="btn btn-secondary" @click="goTo('Home')">Home</button>
+  <button class="btn btn-secondary" @click="goTo('Movies')">Movies</button>
   <button class="btn btn-secondary" @click="goTo('Cities')">Cities</button>
   <button class="btn btn-secondary" @click="goTo('Doggos')">Doggoplz</button>
 </template>

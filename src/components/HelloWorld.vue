@@ -23,7 +23,7 @@
 </style>
 
 <template>
-  <img alt="" src="/assets/fox.jpeg" />
+  <img alt="lion getting bitten by lioness" src="/assets/lion.png" />
   <p>{{ msg }}</p>
   <p>{{ message }}</p>
 </template>
