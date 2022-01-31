@@ -26,11 +26,11 @@
 
     methods: {
       changeText() {
-       /* this.$store.commit('setMessage', this.inputText)*/
+        /* this.$store.commit('setMessage', this.inputText)*/
         this.message = this.inputText
       },
       resetText() {
-        this.inputText = ""
+        this.inputText = ''
       }
     },
 

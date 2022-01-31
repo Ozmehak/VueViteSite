@@ -1,6 +1,9 @@
 <template>
   <div class="EventDemo">
-    <span class="EventDemo__text">Counting down: <span class="EventDemo__text__timer">{{ time }}</span></span>
+    <span class="EventDemo__text"
+      >Counting down:
+      <span class="EventDemo__text__timer">{{ time }}</span></span
+    >
   </div>
 </template>
 
@@ -16,7 +19,7 @@
     emits: ['done'],
     data() {
       return {
-        time: 0,
+        time: 0
       }
     },
     methods: {
@@ -40,13 +43,13 @@
 </script>
 
 <style scoped lang="sass">
-.EventDemo
-  display: block
-  border: solid thin gray
-  border-radius: 4px
-  padding: 10px
+  .EventDemo
+    display: block
+    border: solid thin gray
+    border-radius: 4px
+    padding: 10px
 
-  &__text
-    &__timer
-      color: red
+    &__text
+      &__timer
+        color: red
 </style>

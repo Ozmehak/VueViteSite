@@ -4,7 +4,7 @@
   </div>
   <CardSlot v-else-if="dog /*&& !error*/" class="doggo">
     <img width="640" height="480" :src="dog.message" :alt="dog.message" />
-    <p>{{ value }}</p>
+    <p>Denna Hoond Kosta {{ value }} Kronors</p>
   </CardSlot>
   <div v-if="error">
     <AlertComponent :message="error.message" type="error" />
@@ -12,11 +12,14 @@
   <CardSlot class="excuses">
     <h3>Need excuses to meet doggos?</h3>
     <input
+      v-if="!loadingExcuses"
+      :disabled="loadingExcuses"
       value="Gief Excuses Plz"
       type="button"
       class="btn btn-light"
       @click="this.generateExcuses()"
     />
+    <div v-else class="spinner-border" role="status" />
     <ol>
       <li v-for="excuse in excuses" :key="excuse.id">{{ excuse.excuse }}</li>
     </ol>
@@ -39,22 +42,33 @@
         value: null,
         error: null,
         excuses: null,
-        loading: true
+        loading: true,
+        loadingExcuses: false
       }
     },
     methods: {
       generateExcuses() {
+        this.loadingExcuses = true
+        this.excuses = []
         wretch('https://excuser.herokuapp.com/v1/excuse/10')
           .get()
           .json()
           .then((excuses) => {
             this.excuses = excuses
             /*
-            Tilldelning: let a = 7
-            Jämförelse: a === 7
-            objekt: { a: 7 }
-            Indexering: a[7]
-            */
+          Tilldelning: let a = 7
+          Jämförelse: a === 7
+          objekt: { a: 7 }
+          Indexering: a[7]
+          */
+          })
+          /*
+          .then(() => {
+            return new Promise(resolve => setTimeout(resolve, 5000))
+          })
+           */
+          .finally(() => {
+            this.loadingExcuses = false
           })
       },
 
@@ -91,15 +105,16 @@
             //annars hämta value från russland och lägg till i LS
           } else {
             //russland
-            return wretch(
-              'http://www.randomnumberapi.com/api/v1.0/randomnumber'
-            )
+            return wretch('https://avancera.app/cities/')
               .get()
               .json()
               .then((russiaResponse) => {
+                let donKeeh =
+                  Math.round(Math.random() * 1000) *
+                  russiaResponse[0].population
                 let fileName = this.getFileNameFromUrl(this.dog.message)
-                window.localStorage.setItem(fileName, russiaResponse)
-                this.value = russiaResponse
+                window.localStorage.setItem(fileName, donKeeh)
+                this.value = donKeeh
               })
               .catch(() => {
                 throw new Error('fick inget svar från russland')

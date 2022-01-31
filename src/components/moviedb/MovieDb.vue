@@ -8,13 +8,13 @@
       }
     },
     computed: {
-      ...mapGetters(['cities', 'message', 'loadingCities'])
+      ...mapGetters(['movies', 'message', 'loadingMovies'])
     },
     methods: {
-      ...mapActions(['getCities'])
+      ...mapActions(['getMovies'])
     },
     created() {
-      this.getCities()
+      this.getMovies()
         .catch((error) => {
           this.error = error
         })
@@ -24,15 +24,16 @@
     }
   }
 </script>
-
 <template>
-  <div v-if="loadingCities">Loading cities...</div>
+  <div v-if="loadingMovies">Loading movies...</div>
   <div v-else-if="error">{{ error }}</div>
   <ol v-else>
-    <li v-for="city in cities" :key="city.id">
-      <router-link :to="`/cities/${city.id}`">
-        {{ city.name }}
+    <li v-for="movie in movies" :key="movie.id">
+      <router-link :to="`/movies/${movie.id}`">
+        {{ movie.title }}
       </router-link>
     </li>
   </ol>
 </template>
+
+<style scoped></style>
