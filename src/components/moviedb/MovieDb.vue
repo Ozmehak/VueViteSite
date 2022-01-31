@@ -1,39 +1,39 @@
-
-
-
-
-
-<template>
-  <ul v-if="movies">
-    <li v-for="movie in movies.results" :key="movie.id">{{ movie.title }}</li>
-  </ul>
-</template>
-
 <script>
-  import wretch from 'wretch'
   import { mapActions, mapGetters } from 'vuex'
 
   export default {
-    name: 'MovieDb',
     data() {
       return {
-        movies: null
+        error: null
       }
     },
-
+    computed: {
+      ...mapGetters(['movies', 'message', 'loadingMovies'])
+    },
+    methods: {
+      ...mapActions(['getMovies'])
+    },
     created() {
-      wretch(
-        `https://api.themoviedb.org/3/movie/top_rated?api_key=${
-          import.meta.env.VITE_API_KEY
-        }&language=en-US&page=1`
-      )
-        .get()
-        .json()
-        .then((movies) => {
-          this.movies = movies
+      this.getMovies()
+        .catch((error) => {
+          this.error = error
+        })
+        .finally(() => {
+          this.loading = false
         })
     }
   }
 </script>
+<template>
+  <div v-if="loadingMovies">Loading movies...</div>
+  <div v-else-if="error">{{ error }}</div>
+  <ol v-else>
+    <li v-for="movie in movies" :key="movie.id">
+      <router-link :to="`/movies/${movie.id}`">
+        {{ movie.title }}
+      </router-link>
+    </li>
+  </ol>
+</template>
 
 <style scoped></style>

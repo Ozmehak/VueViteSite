@@ -19,14 +19,13 @@
   <router-view />
 
   <router-link to="/">Hello</router-link>
-  <router-link to="/cities">Cities</router-link>
+  <router-link to="/movies">Movies</router-link>
   <button class="btn btn-secondary" @click="goTo('Home')">Home</button>
   <button class="btn btn-secondary" @click="goTo('Movies')">Movies</button>
-  <button class="btn btn-secondary" @click="goTo('Cities')">Cities</button>
   <button class="btn btn-secondary" @click="goTo('Doggos')">Doggoplz</button>
 </template>
 
 <style scoped lang="sass">
-.btn
-  margin-left: 10px
+  .btn
+    margin-left: 10px
 </style>

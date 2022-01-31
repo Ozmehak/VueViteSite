@@ -4,8 +4,8 @@ import wretch from 'wretch'
 // State holds all data
 const state = {
   message: 'STORE TEXT',
-  cities: null,
-  loadingCities: false
+  movies: null,
+  loadingMovies: false
 }
 
 // Mutations modify the data in the state
@@ -13,19 +13,19 @@ const mutations = {
   setMessage(state, message) {
     state.message = message
   },
-  setCities(state, cities) {
-    state.cities = cities
+  setMovies(state, movies) {
+    state.movies = movies.results
   },
-  setLoadingCities(state, loading) {
-    state.loadingCities = loading
+  setLoadingMovies(state, loading) {
+    state.loadingMovies = loading
   }
 }
 
 // Getters let us fetch data from the state
 const getters = {
   message: (state) => state.message,
-  cities: (state) => state.cities,
-  loadingCities: (state) => state.loadingCities
+  movies: (state) => state.movies,
+  loadingMovies: (state) => state.loadingMovies
 }
 
 // Actions are used by components to update the state
@@ -33,15 +33,18 @@ const actions = {
   setMessage(store, message) {
     store.commit('message', message)
   },
-  getCities(store) {
-    if (store.state.cities || store.state.loadingCities) return
-    store.commit('setLoadingCities', true)
-    return wretch('https://avancera.app/cities/')
+  getMovies(store) {
+    if (store.state.movies || store.state.loadingMovies) return
+    store.commit('setLoadingMovies', true)
+
+    return wretch(
+      `https://api.themoviedb.org/3/movie/top_rated?api_key=382a51f2c6fef6132227dddb86062db6&language=en-US&page=1`
+    )
       .get()
       .json()
-      .then((cities) => {
-        store.commit('setCities', cities)
-        store.commit('setLoadingCities', false)
+      .then((movies) => {
+        store.commit('setMovies', movies)
+        store.commit('setLoadingMovies', false)
       })
   }
 }

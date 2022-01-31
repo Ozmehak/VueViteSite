@@ -1,7 +1,8 @@
-<template></template>
-<div v-if="movie">
-<p>Title: {{movie.title}}</p>
+<template>
+<div v-if="movies">
+<p>Title: {{movies.result.title}}</p>
 </div>
+</template>
 <script>
   import wretch from 'wretch'
 
@@ -9,17 +10,17 @@
     name: 'MovieInfo',
     data() {
       return {
-        movie: null
+        movies: null
       }
     },
     created() {
-      wretch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${
+      wretch(`https://api.themoviedb.org/3/movie/${this.$route.params.id}?api_key=${
         import.meta.env.VITE_API_KEY
-      }&language=en-US&page=1${this.$route.params.id}`)
+      }&language=en-US&page=1`)
         .get()
         .json()
-        .then((movie) => {
-          this.movie = movie
+        .then((movies) => {
+          this.movies = movies
         })
     }
   }
