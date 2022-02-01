@@ -41,7 +41,25 @@ export default defineConfig({
       },
       registerType: 'autoUpdate',
       workbox: {
-        globPatterns: ['assets/**', 'index.html', 'manifest.webmanifest']
+        globPatterns: ['assets/**', 'index.html', 'manifest.webmanifest'],
+        runtimeCaching: [
+          {
+            handler: 'NetworkFirst',
+            urlPattern: 'https://dog.ceo/api/breeds/image/random'
+          },
+          {
+            handler: 'NetworkFirst',
+            urlPattern: 'https://avancera.app/cities/'
+          },
+          {
+            handler: 'NetworkFirst',
+            urlPattern: /https:\/\/api\.themoviedb\.org\/3\/movie\/top_rated.*/
+          },
+          {
+            handler: 'NetworkFirst',
+            urlPattern: /https:\/\/api\.themoviedb\.org\/3\/movie\/\d+.*/
+          }
+        ]
       }
     }),
     vue()

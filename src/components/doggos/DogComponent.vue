@@ -2,7 +2,7 @@
   <div v-if="loading" class="spinner-border text-primary" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>
-  <CardSlot v-else-if="dog /*&& !error*/" class="doggo">
+  <CardSlot v-else-if="dog && !error" class="doggo">
     <img width="640" height="480" :src="dog.message" :alt="dog.message" />
     <p>Denna Hoond Kosta {{ value }} Kronors</p>
   </CardSlot>

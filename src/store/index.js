@@ -29,17 +29,18 @@ const getters = {
 }
 
 // Actions are used by components to update the state
+let moviesPromise
 const actions = {
   setMessage(store, message) {
     store.commit('message', message)
   },
   getMovies(store) {
-    if (store.state.movies || store.state.loadingMovies) return
+    if (store.state.movies || store.state.loadingMovies) return moviesPromise
     store.commit('setLoadingMovies', true)
 
     const apiKey = import.meta.env.VITE_API_KEY
 
-    return wretch(
+    moviesPromise = wretch(
       `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=en-US&page=1`
     )
       .get()
@@ -48,6 +49,11 @@ const actions = {
         store.commit('setMovies', movies)
         store.commit('setLoadingMovies', false)
       })
+      .catch((e) => {
+        store.commit('setLoadingMovies', false)
+        throw e
+      })
+    return moviesPromise
   }
 }
 
