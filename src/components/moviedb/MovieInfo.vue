@@ -1,4 +1,5 @@
 <template>
+  <div v-if="error">Shits Broken yao</div>
   <div v-if="movies">
     <p>Title: {{ movies.title }}</p>
     <p>Original Title: {{ movies.original_title }}</p>
@@ -21,7 +22,8 @@
     data() {
       return {
         movies: null,
-        pix: null
+        pix: null,
+        error: false
       }
     },
     props: {
@@ -41,7 +43,10 @@
         .json()
         .then((movies) => {
           this.movies = movies
-          console.log('donkeh')
+        })
+        .catch((error) => {
+          console.error(error)
+          this.error = true
         })
     }
   }
