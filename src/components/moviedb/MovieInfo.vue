@@ -1,7 +1,16 @@
 <template>
-  <div>
-    <p>Title: {{ movies.original_title }}</p>
-    <img />
+  <div v-if="movies">
+    <p>Title: {{ movies.title }}</p>
+    <p>Original Title: {{ movies.original_title }}</p>
+    <p>Overview: {{ movies.overview }}</p>
+    <img
+      width="400"
+      :src="`https://image.tmdb.org/t/p/original/${movies.poster_path}`"
+      :alt="movies.title"
+    />
+    <p>Release Date: {{ movies.release_date }}</p>
+    <p>Rating: {{ movies.vote_average }}</p>
+    <p>Votes: {{ movies.vote_count }}</p>
   </div>
 </template>
 <script>
@@ -11,7 +20,8 @@
     name: 'MovieInfo',
     data() {
       return {
-        movies: null
+        movies: null,
+        pix: null
       }
     },
     props: {
