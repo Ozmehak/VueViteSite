@@ -1,6 +1,7 @@
 <template>
   <div>
     <p>Title: {{ movies.original_title }}</p>
+    <p>och lite annan stuffs</p>
     <img />
   </div>
 </template>
