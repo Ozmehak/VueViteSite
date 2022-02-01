@@ -12,6 +12,7 @@
     <p>Release Date: {{ movies.release_date }}</p>
     <p>Rating: {{ movies.vote_average }}</p>
     <p>Votes: {{ movies.vote_count }}</p>
+    <p>moviedonkeh.</p>
   </div>
 </template>
 <script>
