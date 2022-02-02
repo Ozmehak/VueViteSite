@@ -3,7 +3,7 @@
     <span class="visually-hidden">Loading...</span>
   </div>
   <CardSlot v-else-if="dog && !error" class="doggo">
-    <img width="640" height="480" :src="dog.message" :alt="dog.message" />
+    <img width="400" :src="dog.message" :alt="dog.message" />
     <p>Denna Hoond Kosta {{ value }} Kronors</p>
   </CardSlot>
   <div v-if="error">
@@ -133,5 +133,5 @@
 
 <style scoped lang="sass">
   .doggo, .excuses
-    display: inline-block
+    width: 430px
 </style>
