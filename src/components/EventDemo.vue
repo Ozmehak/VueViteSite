@@ -44,6 +44,7 @@
 
 <style scoped lang="sass">
   .EventDemo
+    width: 430px
     display: block
     border: solid thin gray
     border-radius: 4px

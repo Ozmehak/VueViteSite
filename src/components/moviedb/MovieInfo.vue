@@ -1,25 +1,31 @@
 <template>
   <div v-if="error">Shits Broken yao</div>
   <div v-if="movies">
-    <p>Title: {{ movies.title }}</p>
-    <p>Original Title: {{ movies.original_title }}</p>
-    <p>Overview: {{ movies.overview }}</p>
-    <img
-      width="400"
-      :src="`https://image.tmdb.org/t/p/original/${movies.poster_path}`"
-      :alt="movies.title"
-    />
-    <p>Release Date: {{ movies.release_date }}</p>
-    <p>Rating: {{ movies.vote_average }}</p>
-    <p>Votes: {{ movies.vote_count }}</p>
-    <p>moviedonkeh.</p>
+    <CardSlot class="movieinfo">Title: {{ movies.title }}</CardSlot>
+    <CardSlot class="movieinfo"
+      >Original Title: {{ movies.original_title }}
+    </CardSlot>
+    <CardSlot class="movieinfo">Overview: {{ movies.overview }}</CardSlot>
+    <CardSlot class="movieinfo"
+      ><img
+        width="400"
+        :src="`https://image.tmdb.org/t/p/original/${movies.poster_path}`"
+        :alt="movies.title"
+    /></CardSlot>
+    <CardSlot class="movieinfo"
+      >Release Date: {{ movies.release_date }}
+    </CardSlot>
+    <CardSlot class="movieinfo">Rating: {{ movies.vote_average }}</CardSlot>
+    <CardSlot class="movieinfo">Votes: {{ movies.vote_count }}</CardSlot>
   </div>
 </template>
 <script>
   import wretch from 'wretch'
+  import CardSlot from '../CardSlot.vue'
 
   export default {
     name: 'MovieInfo',
+    components: { CardSlot },
     data() {
       return {
         movies: null,
@@ -53,4 +59,7 @@
   }
 </script>
 
-<style scoped></style>
+<style scoped lang="sass">
+  .movieinfo
+    width: 430px
+</style>

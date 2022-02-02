@@ -1,8 +1,10 @@
 <script>
   import { mapGetters } from 'vuex'
+  import CardSlot from './CardSlot.vue'
 
   export default {
     name: 'HelloWorld',
+    components: { CardSlot },
     props: {
       msg: {
         type: String,
@@ -16,14 +18,18 @@
   }
 </script>
 
-<style>
-  p {
-    font-weight: bold;
-  }
+<style scoped lang="sass">
+  .lion
+    width: 430px
+
+  p
+    font-weight: bold
 </style>
 
 <template>
-  <img alt="lion getting bitten by lioness" src="/assets/lion.png" />
-  <p>{{ msg }}</p>
-  <p>{{ message }}</p>
+  <CardSlot class="lion">
+    <img alt="lion getting bitten by lioness" src="/assets/lion.png" />
+    <p>{{ msg }}</p>
+    <p>{{ message }}</p>
+  </CardSlot>
 </template>

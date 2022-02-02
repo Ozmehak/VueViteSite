@@ -1,7 +1,9 @@
 <script>
   import { mapActions, mapGetters } from 'vuex'
+  import CardSlot from '../CardSlot.vue'
 
   export default {
+    components: { CardSlot },
     data() {
       return {
         error: null
@@ -27,13 +29,18 @@
 <template>
   <div v-if="loadingMovies">Loading movies...</div>
   <div v-else-if="error">{{ error }}</div>
-  <ol v-else>
-    <li v-for="movie in movies" :key="movie.id">
-      <router-link :to="`/movies/${movie.id}`">
-        {{ movie.title }}
-      </router-link>
-    </li>
-  </ol>
+  <CardSlot class="movehz" v-else>
+    <ol>
+      <li v-for="movie in movies" :key="movie.id">
+        <router-link :to="`/movies/${movie.id}`">
+          {{ movie.title }}
+        </router-link>
+      </li>
+    </ol>
+  </CardSlot>
 </template>
 
-<style scoped></style>
+<style scoped lang="sass">
+  .movehz
+    width: 430px
+</style>
