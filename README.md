@@ -1,3 +1,5 @@
-# A Vue.js template for Vite
+## School project built in VUE
 
-# VueProject
+Props, components, vuex, vite practice
+
+also used Wretch, dotenv eslint and prettier
