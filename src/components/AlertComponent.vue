@@ -38,8 +38,9 @@
 </script>
 
 <style scoped lang="sass">
+  @import "../variables"
   .AlertComponent
-    background: #458bbb
+    background: $color-info
     border-radius: 4px
     padding: 10px
     display: inline-flex
@@ -57,9 +58,9 @@
 
 
     &--error
-      background: #ff3030
+      background: $color-danger
 
 
     &--warning
-      background: #ef7a1a
+      background: $color-warning
 </style>
